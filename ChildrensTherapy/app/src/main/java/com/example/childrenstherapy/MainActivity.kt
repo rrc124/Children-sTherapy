@@ -30,6 +30,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.childrenstherapy.ui.theme.ChildrensTherapyTheme
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+
 /* Similar to int main() entry point in C++, but this is specific to Android app
    development."
 
@@ -51,6 +57,7 @@ class MainActivity : ComponentActivity() {
         setContent{
             ChildrensTherapyTheme() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding -> // Scaffold
+                    FolderListScreen(modifier = Modifier.padding(innerPadding))
                     Greeting(
                         name = "DevTeam",
                         modifier = Modifier.padding(innerPadding)
@@ -60,6 +67,48 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+/*
+[FIXME]: Explain folder class
+*/
+Data class  folder(
+    val name: String,
+   //FIXME: ButtonData is a placeholder for the List of buttons (might not be a list either)
+    val buttonGrid: List<ButtonData>
+)
+
+/*
+[FIXME]: Explain what this does
+*/
+class FolderAdapter(
+    private val folders: List<Folder>,
+    private val onClick: (Folder) -> Unit
+) : RecyclerView.Adapter<FolderAdapter.FolderViewHolder>() {
+
+    inner class FolderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val folderName: TextView = view.findViewById(R.id.folderName)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FolderViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.folder_item, parent, false)
+        return FolderViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: FolderViewHolder, position: Int) {
+        val folder = folders[position]
+        holder.folderName.text = folder.name
+        holder.itemView.setOnClickListener { onClick(folder) }
+    }
+/*
+ getItemCount() is a part of RecyclerView, it returns the number of folders
+ */
+    override fun getItemCount() = folders.size
+}
+
+
+
+
 /* A composable is a "nestable" function from Jetpack that allows you to create
    complex UI structures. So "@Composable" tells the function "Greeting" to use
    the Jetpack Compose UI framework. */
@@ -127,4 +176,38 @@ fun GreetingPreview() {
     ChildrensTherapyTheme() {
         Greeting("Android")
     }
+}
+
+@Composable
+fun FolderListScreen(modifier: Modifier = Modifier) {
+    val folders = listOf(
+        /*
+        [FIXME]: buttonGrid1 and 2 are incorrect, currently using an old version without finishedd buttons, these are placeholders
+         */
+        Folder("Folder 1", buttonGrid1),
+        Folder("Folder 2", buttonGrid2)
+/*
+More folders can be added as needed
+ */
+    )
+
+    LazyColumn(modifier = modifier) {
+        items(folders) { folder ->
+            FolderItem(folder = folder) {
+                openButtonGrid(folder)
+            }
+        }
+    }
+}
+
+
+@Composable
+fun FolderItem(folder: Folder, onClick: () -> Unit) {
+    Text(
+        text = folder.name,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+            .clickable { onClick() }
+    )
 }
