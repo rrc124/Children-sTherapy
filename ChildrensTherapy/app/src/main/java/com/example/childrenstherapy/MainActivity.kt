@@ -71,9 +71,9 @@ class MainActivity : ComponentActivity() {
 /*
 [FIXME]: Explain folder class
 */
-Data class  folder(
+Data class  Folder(
     val name: String,
-   //FIXME: ButtonData is a placeholder for the List of buttons (might not be a list either)
+   //FIXME: ButtonData is a placeholder for the List of buttons
     val buttonGrid: List<ButtonData>
 )
 
