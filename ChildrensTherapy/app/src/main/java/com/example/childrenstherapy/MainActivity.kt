@@ -1,6 +1,6 @@
 /* #### This is the code for the button and the ability to press it to get a reaction
 
-   These are the nessasary imports, described in detail below */
+   These are the necessary imports, described in detail below */
 
 package com.example.childrenstherapy
 /* Bundle, imported below, allows the app to save the activity and keep your
@@ -34,7 +34,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 
 /* Similar to int main() entry point in C++, but this is specific to Android app
    development."
@@ -69,42 +68,51 @@ class MainActivity : ComponentActivity() {
 }
 
 /*
-[FIXME]: Explain folder class
+This is the class for the folders
 */
-Data class  Folder(
+data class  Folder(
     val name: String,
-   //FIXME: ButtonData is a placeholder for the List of buttons
+   //FIXME: ButtonData is a placeholder variable for the List of buttons
     val buttonGrid: List<ButtonData>
 )
 
 /*
-[FIXME]: Explain what this does
+FolderList creates a scrollable list of data using FolderItem to display data and handle clicks
 */
-class FolderAdapter(
-    private val folders: List<Folder>,
-    private val onClick: (Folder) -> Unit
-) : RecyclerView.Adapter<FolderAdapter.FolderViewHolder>() {
-
-    inner class FolderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val folderName: TextView = view.findViewById(R.id.folderName)
+@Composable
+fun FolderList(
+    folders: List<Folder>,
+    onClick: (Folder) -> Unit
+) {
+    /*
+    FIXME: LazyColumn is an unresolved reference, dependencies must be added to build.gradle.kts(?)
+     */
+    LazyColumn {
+        items(folders) { folder : Folder ->
+            /*
+            [FIXME]: FolderItem is not being recognized as compostable
+             */
+            FolderItem(folder = folder, onClick = onClick)
+        }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FolderViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.folder_item, parent, false)
-        return FolderViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: FolderViewHolder, position: Int) {
-        val folder = folders[position]
-        holder.folderName.text = folder.name
-        holder.itemView.setOnClickListener { onClick(folder) }
-    }
-/*
- getItemCount() is a part of RecyclerView, it returns the number of folders
- */
-    override fun getItemCount() = folders.size
 }
+/*
+FIXME: @Composable invocations can only happen from the context of a @Composable function. This might have to do with LazyColumn not being implemented correctly
+ */
+@Composable
+fun FolderItem(
+    folder: Folder,
+    onClick: (Folder) -> Unit
+) {
+    // Use your UI components here
+    Text(
+        text = folder.name,
+        modifier = Modifier
+            .padding(16.dp)
+            .clickable { onClick(folder) }
+    )
+}
+
 
 
 
@@ -182,15 +190,17 @@ fun GreetingPreview() {
 fun FolderListScreen(modifier: Modifier = Modifier) {
     val folders = listOf(
         /*
-        [FIXME]: buttonGrid1 and 2 are incorrect, currently using an old version without finishedd buttons, these are placeholders
+        [FIXME]: buttonGrid1 and 2 are incorrect and are only placeholders for the actual button grid variables
          */
         Folder("Folder 1", buttonGrid1),
         Folder("Folder 2", buttonGrid2)
 /*
-More folders can be added as needed
+More folders can be added as needed by copying above code and adding a number each time. Example: Folder("Folder 3", buttonGrid3)
  */
     )
-
+/*
+LazyColumn creates a scrollable list that only renders visible objects
+ */
     LazyColumn(modifier = modifier) {
         items(folders) { folder ->
             FolderItem(folder = folder) {
