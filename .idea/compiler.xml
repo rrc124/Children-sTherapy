@@ -3,7 +3,6 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="Childrens Therapy.Childrens_Therapy.app" target="21" />
-      <module name="Childrens_Therapy.app" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>
