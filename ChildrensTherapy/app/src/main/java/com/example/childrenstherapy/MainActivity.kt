@@ -67,54 +67,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-/*
-This is the class for the folders
-*/
-data class  Folder(
-    val name: String,
-   //FIXME: ButtonData is a placeholder variable for the List of buttons
-    val buttonGrid: List<ButtonData>
-)
-
-/*
-FolderList creates a scrollable list of data using FolderItem to display data and handle clicks
-*/
-@Composable
-fun FolderList(
-    folders: List<Folder>,
-    onClick: (Folder) -> Unit
-) {
-    /*
-    FIXME: LazyColumn is an unresolved reference, dependencies must be added to build.gradle.kts(?)
-     */
-    LazyColumn {
-        items(folders) { folder : Folder ->
-            /*
-            [FIXME]: FolderItem is not being recognized as compostable
-             */
-            FolderItem(folder = folder, onClick = onClick)
-        }
-    }
-}
-/*
-FIXME: @Composable invocations can only happen from the context of a @Composable function. This might have to do with LazyColumn not being implemented correctly
- */
-@Composable
-fun FolderItem(
-    folder: Folder,
-    onClick: (Folder) -> Unit
-) {
-    // Use your UI components here
-    Text(
-        text = folder.name,
-        modifier = Modifier
-            .padding(16.dp)
-            .clickable { onClick(folder) }
-    )
-}
-
-
-
 
 
 /* A composable is a "nestable" function from Jetpack that allows you to create
@@ -186,38 +138,4 @@ fun GreetingPreview() {
     }
 }
 
-@Composable
-fun FolderListScreen(modifier: Modifier = Modifier) {
-    val folders = listOf(
-        /*
-        [FIXME]: buttonGrid1 and 2 are incorrect and are only placeholders for the actual button grid variables
-         */
-        Folder("Folder 1", buttonGrid1),
-        Folder("Folder 2", buttonGrid2)
-/*
-More folders can be added as needed by copying above code and adding a number each time. Example: Folder("Folder 3", buttonGrid3)
- */
-    )
-/*
-LazyColumn creates a scrollable list that only renders visible objects
- */
-    LazyColumn(modifier = modifier) {
-        items(folders) { folder ->
-            FolderItem(folder = folder) {
-                openButtonGrid(folder)
-            }
-        }
-    }
-}
 
-
-@Composable
-fun FolderItem(folder: Folder, onClick: () -> Unit) {
-    Text(
-        text = folder.name,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-            .clickable { onClick() }
-    )
-}
