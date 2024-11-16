@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- First Row -->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button_open_webpage"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spongebob" />
+
+        <Button
+            android:id="@+id/monkey_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monkeys"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/toad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toad"
+            style="?android:attr/buttonBarButtonStyle" />
+    </TableRow>
+
+    <!-- VideoView in a new row -->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <VideoView
+            android:id="@+id/idVideoView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_span="500" />
+        <ImageView
+            android:id="@+id/toadView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toad" />
+    </TableRow>
+
+    <!-- Second Row -->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_4_text"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_5_text"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_6_text"
+            style="?android:attr/buttonBarButtonStyle" />
+    </TableRow>
+
+    <!-- Third Row -->
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_7_text"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_8_text"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_9_text"
+            style="?android:attr/buttonBarButtonStyle"/>
+    </TableRow>
+
+</TableLayout>
