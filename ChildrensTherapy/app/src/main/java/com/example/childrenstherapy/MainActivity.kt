@@ -1,6 +1,11 @@
-package com.example.childrenstherapy
+/* #### This is the code for the button and the ability to press it to get a reaction
 
-import android.content.Intent
+   These are the necessary imports, described in detail below */
+
+package com.example.childrenstherapy
+/* Bundle, imported below, allows the app to save the activity and keep your
+   state in the program. With bundle, if your app is moved to the background, it
+   will return to the state you left it. */
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -62,6 +67,59 @@ such as videos or images.  By using the *Uri.parse("android.resource://" + packa
 the app will find *monkey_video* in the *res/raw* folder, the path that provides access to resources within the app.<br><br> 
 */
 
+/*
+FIXME: Folder code is commented out due to conflicts with the main code and preventing it from running. We ran out of time to completly fix it (sorry)
+FIXME: There are comments explaining each bug and some possible solutons that we didn't have time to test. The idea of it was to use LazyColumn to make a scrollable
+FIXME: List of data for the folders, which could then be opened to reveal another grid of buttons
+ */
+/*
+/*
+This is the class for the folders
+*/
+data class  Folder(
+    val name: String,
+    //FIXME: ButtonData is a placeholder variable for the List of buttons
+    val buttonGrid: List<ButtonData>
+)
+
+/*
+FolderList creates a scrollable list of data using FolderItem to display data and handle clicks
+*/
+@Composable
+fun FolderList(
+    folders: List<Folder>,
+    onClick: (Folder) -> Unit
+) {
+    /*
+    FIXME: LazyColumn is an unresolved reference, dependencies must be added to build.gradle.kts(?)     Aditonal note: Dependancies were attempted to be added, but didn't work. It might have been becasue of version changes?
+     */
+    LazyColumn {
+        items(folders) { folder : Folder ->
+            /*
+            [FIXME]: FolderItem is not being recognized as compostable
+             */
+            FolderItem(folder = folder, onClick = onClick)
+        }
+    }
+}
+/*
+FIXME: @Composable invocations can only happen from the context of a @Composable function. This might have to do with LazyColumn not being implemented correctly
+ */
+@Composable
+fun FolderItem(
+    folder: Folder,
+    onClick: (Folder) -> Unit
+) {
+    // Use your UI components here
+    Text(
+        text = folder.name,
+        modifier = Modifier
+            .padding(16.dp)
+            .clickable { onClick(folder) }
+    )
+}
+*/
+
 class MainActivity : AppCompatActivity() {
     private lateinit var videoView: VideoView
 
@@ -121,3 +179,55 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+/* @Preview allows us to preview the app inside of the Android Studio
+   environment. */
+@Preview(showBackground = false)
+@Composable
+fun GreetingPreview() {
+    ChildrensTherapyTheme() {
+        Greeting("Android")
+    }
+}
+
+/*
+More folder code, see comments for more information for each specific function
+ */
+/*
+
+@Composable
+fun FolderListScreen(modifier: Modifier = Modifier) {
+    val folders = listOf(
+        /*
+        [FIXME]: buttonGrid1 and 2 are incorrect and are only placeholders for the actual button grid variables
+         */
+        Folder("Folder 1", buttonGrid1),
+        Folder("Folder 2", buttonGrid2)
+        /*
+        More folders can be added as needed by copying above code and adding a number each time. Example: Folder("Folder 3", buttonGrid3)
+         */
+    )
+    /*
+    LazyColumn creates a scrollable list that only renders visible objects
+     */
+    LazyColumn(modifier = modifier) {
+        items(folders) { folder ->
+            FolderItem(folder = folder) {
+                openButtonGrid(folder)
+            }
+        }
+    }
+}
+
+
+@Composable
+fun FolderItem(folder: Folder, onClick: () -> Unit) {
+    Text(
+        text = folder.name,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+            .clickable { onClick() }
+    )
+}
+
+*/
