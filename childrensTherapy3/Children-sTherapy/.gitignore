@@ -1,0 +1,26 @@
+# Ignore IntelliJ IDEA/Android Studio local configuration files
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+
+# Ignore build outputs and intermediate files
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Allow sharing necessary Android Studio project files
+!/.idea/misc.xml           # Contains project-level settings
+!/.idea/vcs.xml            # Contains version control system settings
+!/.idea/modules.xml        # Contains module structure
+!/.idea/codeStyles/        # Share code style configurations (optional)
+!/.idea/runConfigurations/ # Share run/debug configurations (optional)
+
+# Exclude user-specific files
+local.properties
