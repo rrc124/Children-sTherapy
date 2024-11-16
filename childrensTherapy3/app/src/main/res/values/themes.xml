@@ -1,0 +1,5 @@
+<resources>
+    <style name="Theme.ChildrensTherapy3" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Add any customizations here -->
+    </style>
+</resources>
