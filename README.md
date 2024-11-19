@@ -36,7 +36,7 @@ The three tasks are:
 
 ## How to Use
 1. Clone the repository: https://github.com/dh2540/Children-sTherapy
-2. Go to file>Open Folder> and choose directory: Children-sTherapy/tree/main/childrensTherapy3
-3. Expand the file manager to the left of the screen an Android Studio and go to the directory to open MainActivity.kt: childrensTherapy3/ChildrensTherapy/app/src/main/java/com/example/childrenstherapy
-4. Open activity_main.xml in Android Studio found in the following directory: Children-sTherapy/tree/main/childrensTherapy3/Children-sTherapy/app/src/main/res/layout
+2. Go to file>Open Folder> and choose directory: Children-sTherapy/childrensTherapy3
+3. Expand the file manager to the left of the screen on Android Studio and go to the directory to open MainActivity.kt: childrensTherapy3\app\src\main\java\com\example\childrenstherapy3\MainActivity.kt
+4. Open activity_main.xml in Android Studio found in the following directory: childrensTherapy3\app\src\main\res\layout\activity_main.xml
 6. Read documentation in MainActivity.kt for an overview of the project.
